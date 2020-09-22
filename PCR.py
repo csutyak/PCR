@@ -1,17 +1,39 @@
+import random
+
 INITIALRNA = "atgtttgt ttttcttgtt ttattgccac tagtctctag tcagtgtgtt aatcttacaa ccagaactca attaccccct gcatacacta attctttcac  acgtggtgtt tattaccctg acaaagtttt cagatcctca gttttacatt caactcaggacttgttctta cctttctttt ccaatgttac ttggttccat gctatacatg tctctgggaccaatggtact aagaggtttg ataaccctgt cctaccattt aatgatggtg tttattttgcttccactgag aagtctaaca taataagagg ctggattttt ggtactactt tagattcgaagacccagtcc ctacttattg ttaataacgc tactaatgtt gttattaaag tctgtgaatttcaattttgt aatgatccat ttttgggtgt ttattaccac aaaaacaaca aaagttggatggaaagtgag ttcagagttt attctagtgc gaataattgc acttttgaat atgtctctcagccttttctt atggaccttg aaggaaaaca gggtaatttc aaaaatctta gggaatttgtgtttaagaat attgatggtt attttaaaat atattctaag cacacgccta ttaatttagtgcgtgatctc cctcagggtt tttcggcttt agaaccattg gtagatttgc caataggtattaacatcact aggtttcaaa ctttacttgc tttacataga agttatttga ctcctggtgattcttcttca ggttggacag ctggtgctgc agcttattat gtgggttatc ttcaacctaggacttttcta ttaaaatata atgaaaatgg aaccattaca gatgctgtag actgtgcacttgaccctctc tcagaaacaa agtgtacgtt gaaatccttc actgtagaaa aaggaatctatcaaacttct aactttagag tccaaccaac agaatctatt gttagatttc ctaatattacaaacttgtgc ccttttggtg aagtttttaa cgccaccaga tttgcatctg tttatgcttggaacaggaag agaatcagca actgtgttgc tgattattct gtcctatata attccgcatcattttccact tttaagtgtt atggagtgtc tcctactaaa ttaaatgatc tctgctttactaatgtctat gcagattcat ttgtaattag aggtgatgaa gtcagacaaa tcgctccagggcaaactgga aagattgctg attataatta taaattacca gatgatttta caggctgcgttatagcttgg aattctaaca atcttgattc taaggttggt ggtaattata attacctgtatagattgttt aggaagtcta atctcaaacc ttttgagaga gatatttcaa ctgaaatctatcaggccggt agcacacctt gtaatggtgt tgaaggtttt aattgttact ttcctttacaatcatatggt ttccaaccca ctaatggtgt tggttaccaa ccatacagag tagtagtactttcttttgaa cttctacatg caccagcaac tgtttgtgga cctaaaaagt ctactaatttggttaaaaac aaatgtgtca atttcaactt caatggttta acaggcacag gtgttcttactgagtctaac aaaaagtttc tgcctttcca acaatttggc agagacattg ctgacactactgatgctgtc cgtgatccac agacacttga gattcttgac attacaccat gttcttttggtggtgtcagt gttataacac caggaacaaa tacttctaac caggttgctg ttctttatcaggatgttaac tgcacagaag tccctgttgc tattcatgca gatcaactta ctcctacttggcgtgtttat tctacaggtt ctaatgtttt tcaaacacgt gcaggctgtt taataggggctgaacatgtc aacaactcat atgagtgtga catacccatt ggtgcaggta tatgcgctagttatcagact cagactaatt ctcctcggcg ggcacgtagt gtagctagtc aatccatcattgcctacact atgtcacttg gtgcagaaaa ttcagttgct tactctaata actctattgccatacccaca aattttacta ttagtgttac cacagaaatt ctaccagtgt ctatgaccaagacatcagta gattgtacaa tgtacatttg tggtgattca actgaatgca gcaatcttttgttgcaatat ggcagttttt gtacacaatt aaaccgtgct ttaactggaa tagctgttgaacaagacaaa aacacccaag aagtttttgc acaagtcaaa caaatttaca aaacaccaccaattaaagat tttggtggtt ttaatttttc acaaatatta ccagatccat caaaaccaagcaagaggtca tttattgaag atctactttt caacaaagtg acacttgcag atgctggcttcatcaaacaa tatggtgatt gccttggtga tattgctgct agagacctca tttgtgcacaaaagtttaac ggccttactg ttttgccacc tttgctcaca gatgaaatga ttgctcaatacacttctgca ctgttagcgg gtacaatcac ttctggttgg acctttggtg caggtgctgcattacaaata ccatttgcta tgcaaatggc ttataggttt aatggtattg gagttacacagaatgttctc tatgagaacc aaaaattgat tgccaaccaa tttaatagtg ctattggcaaaattcaagac tcactttctt ccacagcaag tgcacttgga aaacttcaag atgtggtcaaccaaaatgca caagctttaa acacgcttgt taaacaactt agctccaatt ttggtgcaatttcaagtgtt ttaaatgata tcctttcacg tcttgacaaa gttgaggctg aagtgcaaattgataggttg atcacaggca gacttcaaag tttgcagaca tatgtgactc aacaattaattagagctgca gaaatcagag cttctgctaa tcttgctgct actaaaatgt cagagtgtgtacttggacaa tcaaaaagag ttgatttttg tggaaagggc tatcatctta tgtccttccctcagtcagca cctcatggtg tagtcttctt gcatgtgact tatgtccctg cacaagaaaagaacttcaca actgctcctg ccatttgtca tgatggaaaa gcacactttc ctcgtgaaggtgtctttgtt tcaaatggca cacactggtt tgtaacacaa aggaattttt atgaaccacaaatcattact acagacaaca catttgtgtc tggtaactgt gatgttgtaa taggaattgtcaacaacaca gtttatgatc ctttgcaacc tgaattagac tcattcaagg aggagttagataaatatttt aagaatcata catcaccaga tgttgattta ggtgacatct ctggcattaatgcttcagtt gtaaacattc aaaaagaaat tgaccgcctc aatgaggttg ccaagaatttaaatgaatct ctcatcgatc tccaagaact tggaaagtat gagcagtata taaaatggccatggtacatt tggctaggtt ttatagctgg cttgattgcc atagtaatgg tgacaattatgctttgctgt atgaccagtt gctgtagttg tctcaagggc tgttgttctt gtggatcctgctgcaaattt gatgaagacg actctgagcc agtgctcaaa ggagtcaaat tacattacacataa"
 INITIALRNA = INITIALRNA.replace(" ", "")
-CYCLES = 2
+lengthOfInitialRNA = len(INITIALRNA)
+CYCLES = 4
+RANDOM_E = 1500
+RANDOM_E_NEGATIVE = -1500
+RANDOM_BASE_FALLOFF = 2500
 
 PRIMER = "gatgctgtccgtgatccaca"
 REVERSEPRIMER = "cccgccgaggagaattagtc"
 
+random.seed()
+
+def compString(primerString):
+	CompSequence = primerString
+	CompSequence = CompSequence.replace("a", "T")
+	CompSequence = CompSequence.replace("t", "a")
+	CompSequence = CompSequence.replace("g", "C")
+	CompSequence = CompSequence.replace("c", "g")
+	CompSequence = CompSequence.replace("T", "t")
+	CompSequence = CompSequence.replace("C", "c")
+	return CompSequence
+
+
 class DNAConvert:
-	def __init__(self, DNAStrand, threeToFive):
+	def __init__(self, DNAStrand, threeToFive, cutOff = False):
 		self.DNAStrand = DNAStrand
 		self.length = len(DNAStrand)
 		self.threeToFive = threeToFive
+		self.cutOff = cutOff
 
 	def printStrand(self):
+		print("perfect primer: ", self.primerPerfect())
+		print("primer cutoff: ", self.primerCutOFF())
 		print(self.DNAStrand)
 
 	def findComp(self):
@@ -32,16 +54,24 @@ class DNAConvert:
 		return newStrand
 
 	def greatPrimerConvert(self):
+		self.primerCutOFF()
+		if self.cutOff:
+			return DNAConvert("", True, cutOff = True)
 		if self.threeToFive:
 			return self.primerConvert()
 		else:
 			return self.ReversePrimerConvert()
 
+	def randomNumberGen(self):
+		randomRange = random.randrange(RANDOM_E_NEGATIVE, RANDOM_E)
+		randomNum = RANDOM_BASE_FALLOFF + randomRange
+		return randomNum
+
 	def primerConvert(self):
 		#finds the index of the primer
 		foundIndex = self.DNAStrand.find(PRIMER)
 		#creates a substring from the index on
-		newString = self.DNAStrand[foundIndex::]
+		newString = self.DNAStrand[foundIndex:self.randomNumberGen():]
 		newStrand = DNAConvert(newString, self.threeToFive)
 		return newStrand
 
@@ -50,11 +80,53 @@ class DNAConvert:
 		#finds the index of the primer
 		foundIndex = reverseString.find(REVERSEPRIMER)
 		#creates a substring from the index on
-		newString = reverseString[foundIndex::]
+		newString = reverseString[foundIndex:self.randomNumberGen():]
 		newString = newString[::-1]
 		newStrand = DNAConvert(newString, self.threeToFive)
 		return newStrand
 
+	def primerPerfect(self):
+		primerLength = len(PRIMER)
+		compReversePrimer = compString(REVERSEPRIMER)
+		compPrimer = compString(PRIMER)
+		lengthOfString = len(self.DNAStrand)
+
+		if(self.DNAStrand.find(PRIMER) == 0):
+			if(self.DNAStrand.find(compReversePrimer[::-1]) == (lengthOfString - primerLength)):
+				return True
+			else:
+				return False
+		elif(self.DNAStrand.find(compPrimer) == 0):
+			if(self.DNAStrand.find(REVERSEPRIMER[::-1]) == (lengthOfString - primerLength)):
+				return True
+			else:
+				return False
+		
+		return False
+
+	def primerCutOFF(self):
+		primerLength = len(PRIMER)
+		compReversePrimer = compString(REVERSEPRIMER)
+		compPrimer = compString(PRIMER)
+		lengthOfString = len(self.DNAStrand)
+
+		if(self.DNAStrand.find(PRIMER) != -1):
+			if(self.DNAStrand.find(compReversePrimer[::-1]) != -1):
+				self.cutOff = False
+				return False
+			else:
+				self.cutOff = True
+				return True
+		elif(self.DNAStrand.find(compPrimer) != -1):
+			if(self.DNAStrand.find(REVERSEPRIMER[::-1]) != -1):
+				self.cutOff = False
+				return False
+			else:
+				self.cutOff = True
+				return True
+
+		self.cutOff = True
+		return True
 
 #loops
 
@@ -87,6 +159,8 @@ while i < CYCLES:
 
 ctr = 0
 while ctr < DNAStrandNum:
-	print("Strand ", ctr)
+	#print("Strand ", ctr)
 	DNAArray[ctr].printStrand()
 	ctr += 1
+
+print("FINISHED")
