@@ -1,11 +1,14 @@
 import random
+import pandas
+import numpy as np
+import matplotlib.pyplot as plt
 
 INITIALRNA = "atgtttgt ttttcttgtt ttattgccac tagtctctag tcagtgtgtt aatcttacaa ccagaactca attaccccct gcatacacta attctttcac  acgtggtgtt tattaccctg acaaagtttt cagatcctca gttttacatt caactcaggacttgttctta cctttctttt ccaatgttac ttggttccat gctatacatg tctctgggaccaatggtact aagaggtttg ataaccctgt cctaccattt aatgatggtg tttattttgcttccactgag aagtctaaca taataagagg ctggattttt ggtactactt tagattcgaagacccagtcc ctacttattg ttaataacgc tactaatgtt gttattaaag tctgtgaatttcaattttgt aatgatccat ttttgggtgt ttattaccac aaaaacaaca aaagttggatggaaagtgag ttcagagttt attctagtgc gaataattgc acttttgaat atgtctctcagccttttctt atggaccttg aaggaaaaca gggtaatttc aaaaatctta gggaatttgtgtttaagaat attgatggtt attttaaaat atattctaag cacacgccta ttaatttagtgcgtgatctc cctcagggtt tttcggcttt agaaccattg gtagatttgc caataggtattaacatcact aggtttcaaa ctttacttgc tttacataga agttatttga ctcctggtgattcttcttca ggttggacag ctggtgctgc agcttattat gtgggttatc ttcaacctaggacttttcta ttaaaatata atgaaaatgg aaccattaca gatgctgtag actgtgcacttgaccctctc tcagaaacaa agtgtacgtt gaaatccttc actgtagaaa aaggaatctatcaaacttct aactttagag tccaaccaac agaatctatt gttagatttc ctaatattacaaacttgtgc ccttttggtg aagtttttaa cgccaccaga tttgcatctg tttatgcttggaacaggaag agaatcagca actgtgttgc tgattattct gtcctatata attccgcatcattttccact tttaagtgtt atggagtgtc tcctactaaa ttaaatgatc tctgctttactaatgtctat gcagattcat ttgtaattag aggtgatgaa gtcagacaaa tcgctccagggcaaactgga aagattgctg attataatta taaattacca gatgatttta caggctgcgttatagcttgg aattctaaca atcttgattc taaggttggt ggtaattata attacctgtatagattgttt aggaagtcta atctcaaacc ttttgagaga gatatttcaa ctgaaatctatcaggccggt agcacacctt gtaatggtgt tgaaggtttt aattgttact ttcctttacaatcatatggt ttccaaccca ctaatggtgt tggttaccaa ccatacagag tagtagtactttcttttgaa cttctacatg caccagcaac tgtttgtgga cctaaaaagt ctactaatttggttaaaaac aaatgtgtca atttcaactt caatggttta acaggcacag gtgttcttactgagtctaac aaaaagtttc tgcctttcca acaatttggc agagacattg ctgacactactgatgctgtc cgtgatccac agacacttga gattcttgac attacaccat gttcttttggtggtgtcagt gttataacac caggaacaaa tacttctaac caggttgctg ttctttatcaggatgttaac tgcacagaag tccctgttgc tattcatgca gatcaactta ctcctacttggcgtgtttat tctacaggtt ctaatgtttt tcaaacacgt gcaggctgtt taataggggctgaacatgtc aacaactcat atgagtgtga catacccatt ggtgcaggta tatgcgctagttatcagact cagactaatt ctcctcggcg ggcacgtagt gtagctagtc aatccatcattgcctacact atgtcacttg gtgcagaaaa ttcagttgct tactctaata actctattgccatacccaca aattttacta ttagtgttac cacagaaatt ctaccagtgt ctatgaccaagacatcagta gattgtacaa tgtacatttg tggtgattca actgaatgca gcaatcttttgttgcaatat ggcagttttt gtacacaatt aaaccgtgct ttaactggaa tagctgttgaacaagacaaa aacacccaag aagtttttgc acaagtcaaa caaatttaca aaacaccaccaattaaagat tttggtggtt ttaatttttc acaaatatta ccagatccat caaaaccaagcaagaggtca tttattgaag atctactttt caacaaagtg acacttgcag atgctggcttcatcaaacaa tatggtgatt gccttggtga tattgctgct agagacctca tttgtgcacaaaagtttaac ggccttactg ttttgccacc tttgctcaca gatgaaatga ttgctcaatacacttctgca ctgttagcgg gtacaatcac ttctggttgg acctttggtg caggtgctgcattacaaata ccatttgcta tgcaaatggc ttataggttt aatggtattg gagttacacagaatgttctc tatgagaacc aaaaattgat tgccaaccaa tttaatagtg ctattggcaaaattcaagac tcactttctt ccacagcaag tgcacttgga aaacttcaag atgtggtcaaccaaaatgca caagctttaa acacgcttgt taaacaactt agctccaatt ttggtgcaatttcaagtgtt ttaaatgata tcctttcacg tcttgacaaa gttgaggctg aagtgcaaattgataggttg atcacaggca gacttcaaag tttgcagaca tatgtgactc aacaattaattagagctgca gaaatcagag cttctgctaa tcttgctgct actaaaatgt cagagtgtgtacttggacaa tcaaaaagag ttgatttttg tggaaagggc tatcatctta tgtccttccctcagtcagca cctcatggtg tagtcttctt gcatgtgact tatgtccctg cacaagaaaagaacttcaca actgctcctg ccatttgtca tgatggaaaa gcacactttc ctcgtgaaggtgtctttgtt tcaaatggca cacactggtt tgtaacacaa aggaattttt atgaaccacaaatcattact acagacaaca catttgtgtc tggtaactgt gatgttgtaa taggaattgtcaacaacaca gtttatgatc ctttgcaacc tgaattagac tcattcaagg aggagttagataaatatttt aagaatcata catcaccaga tgttgattta ggtgacatct ctggcattaatgcttcagtt gtaaacattc aaaaagaaat tgaccgcctc aatgaggttg ccaagaatttaaatgaatct ctcatcgatc tccaagaact tggaaagtat gagcagtata taaaatggccatggtacatt tggctaggtt ttatagctgg cttgattgcc atagtaatgg tgacaattatgctttgctgt atgaccagtt gctgtagttg tctcaagggc tgttgttctt gtggatcctgctgcaaattt gatgaagacg actctgagcc agtgctcaaa ggagtcaaat tacattacacataa"
 INITIALRNA = INITIALRNA.replace(" ", "")
 lengthOfInitialRNA = len(INITIALRNA)
-CYCLES = 4
-RANDOM_E = 1500
-RANDOM_E_NEGATIVE = -1500
+CYCLES = 15
+RANDOM_E = 1000
+RANDOM_E_NEGATIVE = -1000
 RANDOM_BASE_FALLOFF = 2500
 
 PRIMER = "gatgctgtccgtgatccaca"
@@ -37,13 +40,7 @@ class DNAConvert:
 		print(self.DNAStrand)
 
 	def findComp(self):
-		CompSequence = self.DNAStrand
-		CompSequence = CompSequence.replace("a", "T")
-		CompSequence = CompSequence.replace("t", "a")
-		CompSequence = CompSequence.replace("g", "C")
-		CompSequence = CompSequence.replace("c", "g")
-		CompSequence = CompSequence.replace("T", "t")
-		CompSequence = CompSequence.replace("C", "c")
+		CompSequence = compString(self.DNAStrand)
 
 		if self.threeToFive:
 			newStrandThreeToFive = False
@@ -55,8 +52,8 @@ class DNAConvert:
 
 	def greatPrimerConvert(self):
 		self.primerCutOFF()
-		if self.cutOff:
-			return DNAConvert("", True, cutOff = True)
+		#if self.cutOff:
+			#return DNAConvert("", True, cutOff = True)
 		if self.threeToFive:
 			return self.primerConvert()
 		else:
@@ -128,6 +125,19 @@ class DNAConvert:
 		self.cutOff = True
 		return True
 
+	def getLength(self):
+		self.length = len(self.DNAStrand)
+		return self.length
+
+	def findGCCount(self):
+		self.getLength()
+		gcCtr = 0
+		for x in range(self.length):
+			if self.DNAStrand[x] == "g" or self.DNAStrand[x] == "c":
+				gcCtr += 1
+
+		return gcCtr
+
 #loops
 
 DNAArray = []
@@ -157,10 +167,63 @@ while i < CYCLES:
 	DNAStrandNum = DNAStrandNum * 2
 	i += 1
 
+print("Finished all cycles")
+
 ctr = 0
+emptyStandCtr = 0
+minLength = 10000000
+maxLength = 0
+sumLengthOfStrings = 0
+sumGC = 0
+arrayOfLengths = []
+perfectCopyCounter = 0
 while ctr < DNAStrandNum:
-	#print("Strand ", ctr)
-	DNAArray[ctr].printStrand()
+	#test for min length
+	if(DNAArray[ctr].primerPerfect()):
+		perfectCopyCounter += 1
+
+	#find min
+	if(minLength > DNAArray[ctr].getLength()):
+		minLength = DNAArray[ctr].getLength()
+
+	#find Max
+	if(maxLength < DNAArray[ctr].getLength()):
+		maxLength = DNAArray[ctr].getLength()
+
+	#find sum of all strings
+	sumLengthOfStrings += DNAArray[ctr].getLength()
+
+	#find sum of GC
+	sumGC += DNAArray[ctr].findGCCount()
+	
+	arrayOfLengths.append(DNAArray[ctr].getLength())
+
+	if(DNAArray[ctr].cutOff):
+		emptyStandCtr += 1
+	#DNAArray[ctr].printStrand()
 	ctr += 1
+
+#print number of fragments
+NumberOfFragments = DNAStrandNum - emptyStandCtr
+print("Number of Fragments: " , NumberOfFragments)
+print("Min length: ", minLength)
+print("Max length: ", maxLength)
+
+average = round((sumLengthOfStrings / NumberOfFragments), 1)
+print("Average length of DNA fragments: ", average)
+
+GCContent = round(sumGC / sumLengthOfStrings, 3)
+GCContent *= 100
+print("GC content: ", GCContent, "%")
+
+print("Perfect Copies: ", perfectCopyCounter)
+
+n, bins, patches = plt.hist(arrayOfLengths, 20, density=0, facecolor='g', alpha=1)
+plt.xlabel('Length of stand')
+plt.ylabel('Frequency')
+plt.title('Distribution of lengths')
+plt.axis([0, maxLength, 0, NumberOfFragments])
+plt.grid(True)
+plt.show()
 
 print("FINISHED")
